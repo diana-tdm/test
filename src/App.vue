@@ -1,26 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <TimerBlock v-for="n in this.count" v-bind:key="n" />
+  <TimerAdd @add="add" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TimerBlock from "./components/Timer.vue";
+import TimerAdd from "./components/TimerAdd.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    TimerBlock,
+    TimerAdd,
+  },
+  data() {
+    return {
+      count: 3,
+    };
+  },
+  methods: {
+    add() {
+      this.count++;
+    },
+  },
+};
 </script>
 
 <style>
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background: #353638;
+  --main-color: #9e9e9e;
+  overflow: hidden auto;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 775px;
+  display: flex;
+  row-gap: 45px;
+  column-gap: 50px;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  padding: 72px 0px 82px;
+}
+
+@media (max-width: 874px) {
+  #app {
+    width: 500px;
+  }
+}
+
+@media (max-width: 599px) {
+  #app {
+    width: 225px;
+  }
 }
 </style>
